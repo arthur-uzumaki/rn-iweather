@@ -1,13 +1,15 @@
-import type { ReactElement, ReactNode } from 'react'
+import { ReactElement, ReactNode } from "react";
 
-import { type RenderOptions, render } from '@testing-library/react-native'
-import { SafeAreaProvider } from 'react-native-safe-area-context'
-import { CityProvider } from '~/contexts/city-context'
+import { CityProvider } from "@contexts/CityContext";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { RenderOptions, render } from "@testing-library/react-native";
 
 function Providers({ children }: { children: ReactNode }) {
   return (
     <SafeAreaProvider>
-      <CityProvider>{children}</CityProvider>
+      <CityProvider>
+        {children}
+      </CityProvider>
     </SafeAreaProvider>
   )
 }

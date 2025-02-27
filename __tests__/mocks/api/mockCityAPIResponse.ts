@@ -1,13 +1,13 @@
-import type { CityAPIResponse } from '~/http/get-city-by-name'
+import { CityAPIResponse } from '@services/getCityByNameService'
 
 export const mockCityAPIResponse: CityAPIResponse = {
   id: '1',
   name: 'São Paulo',
   sys: {
-    country: 'BR',
+    country: 'BR'
   },
   coord: {
     lat: 123,
-    lon: 456,
-  },
+    lon: 456
+  }
 }

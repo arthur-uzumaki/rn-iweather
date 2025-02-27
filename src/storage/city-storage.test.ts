@@ -1,5 +1,9 @@
 import type { CityProps } from '~/http/get-city-by-name'
-import { getStorage, removeStorage, saveStorage } from './city-storage'
+import {
+  getStorageCity,
+  removeStorageCity,
+  saveStorageCity,
+} from './city-storage'
 
 const newCity: CityProps = {
   id: '1',
@@ -10,24 +14,24 @@ const newCity: CityProps = {
 
 describe('Storage: CityStorage', () => {
   it('should be return null when dont have a city storage ', async () => {
-    const response = await getStorage()
+    const response = await getStorageCity()
 
     expect(response).toBeNull()
   })
 
   it('should be return city storage', async () => {
-    await saveStorage(newCity)
+    await saveStorageCity(newCity)
 
-    const response = await getStorage()
+    const response = await getStorageCity()
 
     expect(response).toEqual(newCity)
   })
 
   it('should be remover city storage', async () => {
-    await saveStorage(newCity)
-    await removeStorage()
+    await saveStorageCity(newCity)
+    await removeStorageCity()
 
-    const response = await getStorage()
+    const response = await getStorageCity()
 
     expect(response).toBeNull()
   })

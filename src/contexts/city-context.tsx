@@ -1,6 +1,6 @@
 import { type ReactNode, createContext, useEffect, useState } from 'react'
 import type { CityProps } from '~/http/get-city-by-name'
-import { getStorage, saveStorage } from '~/storage/city-storage'
+import { getStorageCity, saveStorageCity } from '~/storage/city-storage'
 
 interface CityContextProviderProps {
   children: ReactNode
@@ -22,13 +22,13 @@ export function CityProvider({ children }: CityContextProviderProps) {
 
   async function onChanceCity(selectedCity: CityProps) {
     setCityIsLoading(true)
-    await saveStorage(selectedCity)
+    await saveStorageCity(selectedCity)
     setCity(selectedCity)
     setCityIsLoading(false)
   }
 
   useEffect(() => {
-    getStorage()
+    getStorageCity()
       .then(data => setCity(data))
       .finally(() => setCityIsLoading(false))
   }, [])
