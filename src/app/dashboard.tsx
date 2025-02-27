@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ScrollView, Text, View } from 'react-native'
+import { ScrollView, View } from 'react-native'
 import { Loading } from '~/components/loading'
 import { NextDay } from '~/components/next-day'
 import { SelectList } from '~/components/select-list'
@@ -11,7 +11,6 @@ import {
   type WeatherResponseProps,
   getWeatherByCity,
 } from '~/http/get-weather-by-city'
-import { weatherIcons } from '~/utils/weather-icons'
 
 export default function Dashboard() {
   const [cities, setCities] = useState<CityProps[]>([])

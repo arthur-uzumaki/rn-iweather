@@ -11,10 +11,9 @@ import {
 import { Slot } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
 
-import * as SplashScreen from 'expo-splash-screen'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
+import { Loading } from '~/components/loading'
 import { CityProvider } from '~/contexts/city-context'
-
-SplashScreen.preventAutoHideAsync()
 
 export default function RootLayout() {
   const [fontLoaded] = useFonts({
@@ -23,21 +22,31 @@ export default function RootLayout() {
     Nunito_800ExtraBold,
   })
 
-  if (fontLoaded) {
-    SplashScreen.hideAsync()
-  } else {
-    return
+  if (!fontLoaded) {
+    return (
+      <>
+        <Loading />
+        <StatusBar
+          style="light"
+          backgroundColor="transparent"
+          translucent
+          animated
+        />
+      </>
+    )
   }
 
   return (
-    <CityProvider>
-      <Slot />
+    <SafeAreaProvider className="flex-1">
+      <CityProvider>
+        <Slot />
+      </CityProvider>
       <StatusBar
         style="light"
         backgroundColor="transparent"
         translucent
         animated
       />
-    </CityProvider>
+    </SafeAreaProvider>
   )
 }
