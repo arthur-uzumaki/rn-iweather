@@ -6,7 +6,7 @@ import { api } from '~/lib/api'
 import { getNextDays } from '~/utils/get-next-days'
 import { type WeatherIconsKeysProps, weatherIcons } from '~/utils/weather-icons'
 
-export interface WeatherAPIResponse {
+export interface WeatherAPIResponseProps {
   list: {
     pop: number
     dt_txt: string
@@ -45,7 +45,7 @@ export async function getWeatherByCity({
   latitude,
   longitude,
 }: SearchCityWeatherProps): Promise<WeatherResponseProps> {
-  const { data } = await api.get<WeatherAPIResponse>(
+  const { data } = await api.get<WeatherAPIResponseProps>(
     `/forecast?lat=${latitude}&lon=${longitude}`
   )
 
