@@ -18,7 +18,6 @@ export function SelectList(props: SelectListProps) {
         <Input.Field
           placeholder={props.placeholder}
           onChangeText={props.onChange}
-          focusable
           value={props.value}
         />
       </Input>

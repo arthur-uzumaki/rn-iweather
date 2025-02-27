@@ -1,5 +1,6 @@
 import {
   ActivityIndicator,
+  Platform,
   TextInput,
   type TextInputProps,
   View,
@@ -13,14 +14,14 @@ interface InputProps extends ViewProps {
 
 function Input({ children, isLoading = false }: InputProps) {
   return (
-    <View className="h-14 w-full flex-row rounded-lg bg-gray_600 px-5 font-regular text-base">
-      {isLoading ? (
+    <View className="h-14 w-full flex-row rounded-lg bg-gray_600 px-5 font-regular text-base ">
+      {children}
+
+      {isLoading && (
         <ActivityIndicator
           className="text-blue_light"
           testID="activity-indicator"
         />
-      ) : (
-        children
       )}
     </View>
   )
@@ -32,6 +33,10 @@ function Field({ ...rest }: TextInputProps) {
       className="flex-1 text-white"
       placeholderTextColor={theme.colors.gray_400}
       {...rest}
+      cursorColor={theme.colors.blue_light}
+      selectionColor={
+        Platform.OS === 'ios' ? theme.colors.blue_light : undefined
+      }
     />
   )
 }
