@@ -1,28 +1,19 @@
-import { router, useRootNavigationState } from 'expo-router'
+import { Redirect, router, useRootNavigationState } from 'expo-router'
 import { useEffect } from 'react'
 import { View } from 'react-native'
 import { Loading } from '~/components/loading'
 import { useCity } from '~/hooks/use-city'
+import Dashboard from './dashboard'
+import Search from './search'
 
 export default function Index() {
   const { city } = useCity()
   const { push } = router
   const navigationState = useRootNavigationState()
 
-  useEffect(() => {
-    if (!navigationState?.key) {
-      return
-    }
-    if (city) {
-      push('/dashboard')
-    } else {
-      push('/search')
-    }
-  }, [city])
+  if (!city) {
+    return <Redirect href={'/search'} />
+  }
 
-  return (
-    <View className="flex-1 bg-gray_900">
-      <Loading />
-    </View>
-  )
+  return <Dashboard />
 }
