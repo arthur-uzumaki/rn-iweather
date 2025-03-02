@@ -26,19 +26,17 @@ export function WeatherToday({ city, weather }: Props) {
     <ImageBackground
       className="justify-between overflow-hidden rounded-lg bg-gray_700 p-5"
       source={bgImage}
-      resizeMode="center"
+      resizeMode="cover"
     >
       <View>
-        <Text>{city}</Text>
+        <Text className="font-bold text-base text-gray_100">{city}</Text>
 
         <Text className="font-regular text-gray_100 text-xs">{today}</Text>
       </View>
 
       <View className="w-full flex-row">
         <View className="mb-4 flex-1 justify-end">
-          <Text className="font-extra_bold text-5xl text-white">
-            {weather.temp}
-          </Text>
+          <Text className="font-bold text-5xl text-white">{weather.temp}</Text>
 
           <Text className="font-bold text-base text-white">
             {weather.temp_min} / {weather.temp_max}
@@ -47,9 +45,8 @@ export function WeatherToday({ city, weather }: Props) {
           <Text className="font-regular text-sm text-white capitalize ">
             {weather.description}
           </Text>
-
-          <Icon testID="icon" width={160} height={160} />
         </View>
+        <Icon testID="icon" width={160} height={160} />
       </View>
     </ImageBackground>
   )

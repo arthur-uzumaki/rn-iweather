@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { ScrollView, View } from 'react-native'
 import { Loading } from '~/components/loading'
-import { NextDay } from '~/components/next-day'
+import { NextDays } from '~/components/next-day'
 import { SelectList } from '~/components/select-list'
 import { WeatherDetails } from '~/components/weather-details'
 import { WeatherToday } from '~/components/weather-today'
@@ -39,6 +39,7 @@ export default function Dashboard() {
     const { latitude, longitude } = city
     const response = await getWeatherByCity({ latitude, longitude })
     setWeather(response)
+    setWeatherIsLoading(false)
   }
 
   async function getCities(city: string) {
@@ -69,6 +70,7 @@ export default function Dashboard() {
   if (!city || cityIsLoading || isWeatherIsLoading) {
     return <Loading />
   }
+
   return (
     <View className="flex-1 gap-8 bg-gray_900 p-5 py-16 pb-0">
       <SelectList
@@ -82,9 +84,9 @@ export default function Dashboard() {
 
       <WeatherToday city={city.name} weather={weather.today.weather} />
 
-      <ScrollView className="gap-2 pb-8">
+      <ScrollView className="gap-2 pb-8" showsHorizontalScrollIndicator={false}>
         <WeatherDetails data={weather.today.details} />
-        <NextDay data={weather.nextDays} />
+        <NextDays data={weather.nextDays} />
       </ScrollView>
     </View>
   )

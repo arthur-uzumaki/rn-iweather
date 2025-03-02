@@ -26,27 +26,17 @@ export default function RootLayout() {
     return (
       <>
         <Loading />
-        <StatusBar
-          style="light"
-          backgroundColor="transparent"
-          translucent
-          animated
-        />
+        <StatusBar style="light" backgroundColor="transparent" translucent />
       </>
     )
   }
 
   return (
-    <SafeAreaProvider className="flex-1">
+    <>
       <CityProvider>
         <Slot />
       </CityProvider>
-      <StatusBar
-        style="light"
-        backgroundColor="transparent"
-        translucent
-        animated
-      />
-    </SafeAreaProvider>
+      <StatusBar style="light" backgroundColor="transparent" translucent />
+    </>
   )
 }

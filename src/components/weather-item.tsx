@@ -18,12 +18,12 @@ export function WeatherItem({
   return (
     <View
       className={clsx('w-full flex-row items-center py-5', {
-        'border-[1px] border-b-gray-700': !isLast,
+        'border-b border-b-gray_700': !isLast,
       })}
     >
       <Icon width={24} height={24} />
 
-      <Text className="ml-3 flex-1 font-bold text-gray-200 text-sm ">
+      <Text className="ml-3 flex-1 font-bold text-gray_200 text-sm ">
         {title}
       </Text>
 

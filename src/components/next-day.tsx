@@ -5,7 +5,7 @@ interface NextDayProps {
   data: DayProps[]
 }
 
-export function NextDay({ data }: NextDayProps) {
+export function NextDays({ data }: NextDayProps) {
   return (
     <View className="w-full flex-row items-center justify-between rounded-xl bg-gray-800 p-3">
       {data.map(day => (

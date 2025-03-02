@@ -1,3 +1,4 @@
+import { router } from 'expo-router'
 import { type ReactNode, createContext, useEffect, useState } from 'react'
 import type { CityProps } from '~/http/get-city-by-name'
 import { getStorageCity, saveStorageCity } from '~/storage/city-storage'
@@ -9,7 +10,7 @@ interface CityContextProviderProps {
 interface CityContextDataProps {
   cityIsLoading: boolean
   city: CityProps | null
-  onChanceCity: (city: CityProps) => void
+  onChanceCity: (city: CityProps) => Promise<void>
 }
 
 export const CityContext = createContext<CityContextDataProps>(
@@ -28,10 +29,17 @@ export function CityProvider({ children }: CityContextProviderProps) {
   }
 
   useEffect(() => {
+    setCityIsLoading(true)
     getStorageCity()
       .then(data => setCity(data))
       .finally(() => setCityIsLoading(false))
   }, [])
+
+  useEffect(() => {
+    if (city) {
+      router.navigate('/dashboard')
+    }
+  }, [city])
 
   return (
     <CityContext.Provider

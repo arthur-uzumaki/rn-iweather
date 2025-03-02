@@ -28,12 +28,12 @@ export interface WeatherAPIResponseProps {
   }[]
 }
 
-interface SearchCityWeatherProps {
+type SearchCityWeatherProps = {
   latitude: number
   longitude: number
 }
 
-export interface WeatherResponseProps {
+export type WeatherResponseProps = {
   today: {
     weather: WeatherTodayProps
     details: WeatherDetailsProps
@@ -48,20 +48,18 @@ export async function getWeatherByCity({
   const { data } = await api.get<WeatherAPIResponseProps>(
     `/forecast?lat=${latitude}&lon=${longitude}`
   )
-
   const { main, weather, wind, pop } = data.list[0]
 
   const today = {
     weather: {
-      temp: `${Math.ceil(main.temp)}°c`,
-      temp_min: `${Math.floor(main.temp_min)}°c`,
-      temp_max: `${Math.ceil(main.temp_max)}°c`,
+      temp: `${Math.ceil(main.temp)}ºc`,
+      temp_min: `${Math.floor(main.temp_min)}ºc`,
+      temp_max: `${Math.ceil(main.temp_max)}ºc`,
       description: weather[0].description,
       details: weatherIcons[weather[0].main],
     },
-
     details: {
-      feels_like: `${Math.floor(main.feels_like)}°c`,
+      feels_like: `${Math.floor(main.feels_like)}ºc`,
       probability: `${pop * 100}%`,
       wind_speed: `${wind.speed}km/h`,
       humidity: `${main.humidity}%`,
@@ -80,19 +78,19 @@ export async function getWeatherByCity({
 
     if (days.includes(day) && !daysAdded.includes(day)) {
       daysAdded.push(day)
+
+      const status: WeatherIconsKeysProps = item.weather[0].main
+
+      const details = weatherIcons[status]
+
+      nextDays.push({
+        day: dayjs(new Date(item.dt_txt)).format('ddd'),
+        min: `${Math.floor(item.main.temp_min)}ºc`,
+        max: `${Math.ceil(item.main.temp_max)}ºc`,
+        weather: item.weather[0].description,
+        icon: details.icon_day,
+      })
     }
-
-    const status: WeatherIconsKeysProps = item.weather[0].main
-
-    const details = weatherIcons[status]
-
-    nextDays.push({
-      day: dayjs(new Date(item.dt_txt)).format('ddd'),
-      min: `${Math.floor(item.main.tem_min)}°c`,
-      max: `${Math.ceil(item.main.tem_max)}°c`,
-      weather: item.weather[0].description,
-      icon: details.icon_day,
-    })
   })
 
   return { today, nextDays }

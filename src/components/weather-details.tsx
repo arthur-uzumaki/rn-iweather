@@ -41,7 +41,7 @@ export function WeatherDetails({ data }: Props) {
 
       <WeatherItem icon={drop} title="Umidade do ar" value={data.humidity} />
 
-      <WeatherItem icon={sun} title="Índice UV" value={data.temp_kf} isLast />
+      <WeatherItem icon={sun} title="Índice UV" value={data.temp_kf} />
     </View>
   )
 }

@@ -1,11 +1,11 @@
 import { render, screen } from '@testing-library/react-native'
 import clearDay from '~/assets/clear_day.svg'
-import { NextDay } from './next-day'
+import { NextDays } from './next-day'
 
 describe('Component: NextDay', () => {
   it('should be render day', () => {
     render(
-      <NextDay
+      <NextDays
         data={[
           {
             day: '18/07',
