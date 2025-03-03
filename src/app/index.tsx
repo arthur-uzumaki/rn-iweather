@@ -20,7 +20,6 @@ export default function Search() {
   const [isLoading, setIsLoading] = useState(false)
 
   const { onChanceCity, city } = useCity()
-  console.log('index', city)
   const dimensions = useWindowDimensions()
 
   async function handleChanceCity(selectedCity: CityProps) {

@@ -11,7 +11,6 @@ import {
 import { Slot } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
 
-import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { Loading } from '~/components/loading'
 import { CityProvider } from '~/contexts/city-context'
 

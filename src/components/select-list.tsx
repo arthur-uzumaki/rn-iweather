@@ -32,7 +32,7 @@ export function SelectList(props: SelectListProps) {
             activeOpacity={0.7}
             onPress={() => props.onPress(item)}
           >
-            <Text className="border-[1px] border-t-gray_600 bg-gray_500 px-5 py-4 font-regular text-base text-gray_100 ">
+            <Text className="border-b border-b-gray_600 bg-gray_500 px-5 py-4 font-regular text-base text-gray_100 ">
               {item.name}
             </Text>
           </TouchableOpacity>
